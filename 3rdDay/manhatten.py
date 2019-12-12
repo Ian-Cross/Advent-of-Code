@@ -72,9 +72,3 @@ for point in matching_points:
 
 print(smallest_manhatten)
 print(smallest_steps)
-# for coord in polar_wires[0]:
-#     for coord2 in polar_wires[1]:
-#         if coord[0] == coord2[0] and coord[1] == coord2[1]:
-#             print("Found a matching pair (%d,%d) on wire 1 and (%d,%d) on wire 2, the manhatten distance is %d" %(coord[0],coord[1],coord2[0],coord2[1],abs(coord[0])+abs(coord[1])))
-
-# print(polar_wires)
