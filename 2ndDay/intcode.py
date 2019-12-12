@@ -33,6 +33,10 @@ def part_1(path):
 
         print("Value left at address 0: %d" % opcode[0])
 
+"""
+Desc: Compute opcodes with different combinations of nouns and verbs to search for a desired output
+Param: path: file path to datafile
+"""
 def part_2(path):
     # collect list of opcodes from the datafile
     opcodes = readFile(path or PATH,return_type=int,strip=True,split=",")
