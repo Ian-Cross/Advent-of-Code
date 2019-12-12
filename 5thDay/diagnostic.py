@@ -1,4 +1,4 @@
-from reused import arguments, readFile
+from reused import arguments, read_file
 
 PATH="5thDay/input.txt"
 opcode = None
@@ -24,7 +24,7 @@ Param: path: file path to pasword range
 """
 def part_1(path):
     global opcode
-    opcodes = readFile(path or PATH,return_type=int,strip=True,split=",")
+    opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
 
     """
     Desc: Execute the opcode returning the computer list
@@ -63,7 +63,7 @@ def part_1(path):
                 i+=2
             elif operation[3:] == "04":
                 a = retrieve_param(operation,i+1)
-                print(a)
+                print("Diagnostic Test: %s " % a)
                 i+=2
 
     for code in opcodes:
@@ -76,7 +76,7 @@ Param: path: file path to pasword range
 """
 def part_2(path):
     global opcode
-    opcodes = readFile(path or PATH,return_type=int,strip=True,split=",")
+    opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
 
     """
     Desc: Execute the opcode returning the computer list
@@ -115,7 +115,7 @@ def part_2(path):
                 i+=2
             elif operation[3:] == "04":
                 a = retrieve_param(operation,i+1)
-                print(a)
+                print("Diagnostic Test: %s " % a)
                 i+=2
             elif operation[3:] == "05":
                 a,b = retrieve_param(operation,i+1,i+2)
@@ -140,3 +140,4 @@ def part_2(path):
 
 if __name__ == '__main__':
     arguments(part_1,part_2)
+    print("\n")

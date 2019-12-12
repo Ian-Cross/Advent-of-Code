@@ -1,4 +1,4 @@
-from reused import arguments, readFile
+from reused import arguments, read_file
 from math import floor
 
 PATH = "1stDay/input.txt"
@@ -9,11 +9,11 @@ Param: file path to a provided datafile
 """
 def part_1(path):
     # Colect the weights of the modules
-    module_weights = readFile(path or PATH, return_type=int,strip=True)
+    module_weights = read_file(path or PATH, return_type=int,strip=True)
     # Calculate the fuel cost for each module
     fuel_cost = [floor(weight/3)-2 for weight in module_weights]
     # Provide the summation as the solution
-    print(sum(fuel_cost))
+    print("The sum of the fuel requirements for all of the modules is %d" % sum(fuel_cost))
 
 """
 Desc: Calculate the extra needed fuel from the weight of each rocket module
@@ -22,7 +22,7 @@ Param: file path to a provided datafile
 """
 def part_2(path):
     # Colect the weights of the modules
-    module_weights = readFile(path or PATH, return_type=int,strip=True)
+    module_weights = read_file(path or PATH, return_type=int,strip=True)
 
     """
     Desc: A recursive function used to calculate the weight of modules,
@@ -45,8 +45,9 @@ def part_2(path):
     # Build an array of each modules total fuel costs
     fuel_cost = [fuel_cost(weight) for weight in module_weights]
     # Provide the summation as the solution
-    print(sum(fuel_cost))
+    print("The sum of the complete fuel requirements for all of the modules is %d" % sum(fuel_cost))
 
 
 if __name__ == '__main__':
     arguments(part_1,part_2)
+    print("\n")

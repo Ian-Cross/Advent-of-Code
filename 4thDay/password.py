@@ -1,4 +1,4 @@
-from reused import arguments, readFile
+from reused import arguments, read_file
 
 PATH="4thDay/input.txt"
 
@@ -40,7 +40,7 @@ def check_password(password, strick_double = False):
     if is_increse:
         # strick, check for a group that didn't get too large
         if strick_double:
-            for i in range(len(adj)-1):
+            for i in range(len(matched_groups)-1):
                 if matched_groups[i] == True and matched_groups[i+1] == None:
                     return password
         # non strick, as long as there has been 1 match it is valid
@@ -53,14 +53,14 @@ Desc: Cycle through the provided password range looking for non strick matches
 Param: path: file path to pasword range
 """
 def part_1(path):
-    password_ranges = readFile(path or PATH,return_type=int,strip=True,split="-")
+    password_ranges = read_file(path or PATH,return_type=int,strip=True,split="-")
 
     for password_range in password_ranges:
         passwords = []
         for x in range(password_range[0],password_range[1]):
-            passwords.append(check_password(x,strick_double=False))
+            passwords.append(check_password(str(x),strick_double=False))
         passwords = [password for password in passwords if password]
-        print(len(passwords))
+        print("There are %d passwords within the range %d - %d " % (len(passwords),password_range[0],password_range[1]))
 
 
 """
@@ -68,16 +68,17 @@ Desc: Cycle through the provided password range looking for strick matches
 Param: path: file path to pasword range
 """
 def part_2(path):
-    password_ranges = readFile(path or PATH,return_type=int,strip=True,split="-")
+    password_ranges = read_file(path or PATH,return_type=int,strip=True,split="-")
 
     for password_range in password_ranges:
         passwords = []
         for x in range(password_range[0],password_range[1]):
             passwords.append(check_password(str(x),strick_double=True))
         passwords = [password for password in passwords if password]
-        print(len(passwords))
+        print("There are %d passwords within the range %d - %d " % (len(passwords),password_range[0],password_range[1]))
 
 
 
 if __name__ == '__main__':
     arguments(part_1,part_2)
+    print("\n")

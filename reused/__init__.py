@@ -1,2 +1,2 @@
 from .arguments import arguments
-from .readFile import readFile
+from .readFile import read_file

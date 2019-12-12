@@ -32,7 +32,7 @@ Param: path: file path to the datafile
        strip: boolean, to trim each line of whitespace
        split: str, a delimiter to use on each line for further separation of lines
 """
-def readFile(path=None,return_type=str,strip=False,split=None):
+def read_file(path=None,return_type=str,strip=False,split=None):
     # Exit if no datafile is provided
     if not path:
         print("Please supply a path to the input file")

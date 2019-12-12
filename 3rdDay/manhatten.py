@@ -1,4 +1,4 @@
-from reused import arguments, readFile
+from reused import arguments, read_file
 import re
 from operator import itemgetter
 
@@ -65,7 +65,7 @@ Desc: Intake descriptions of two wires and identify the closest intersection by 
 Param: path: a filepath to the input data
 """
 def part_1(path):
-    wires = readFile(path or PATH,return_type=str,strip=True,split=",")
+    wires = read_file(path or PATH,return_type=str,strip=True,split=",")
     polar_wires = []
 
     for wire in wires:
@@ -98,7 +98,7 @@ Param: path: a filepath to the input data
 def part_2(path):
     global numSteps
 
-    wires = readFile(path or PATH,return_type=str,strip=True,split=",")
+    wires = read_file(path or PATH,return_type=str,strip=True,split=",")
     polar_wires = []
 
     for wire in wires:
@@ -127,3 +127,4 @@ def part_2(path):
 
 if __name__ == '__main__':
     arguments(part_1,part_2)
+    print("\n")

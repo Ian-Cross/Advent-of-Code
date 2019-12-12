@@ -1,4 +1,4 @@
-from reused import arguments, readFile
+from reused import arguments, read_file
 
 PATH = "2ndDay/input.txt"
 
@@ -8,7 +8,7 @@ Param: path: file path to datafile
 """
 def part_1(path):
     # collect list of opcodes from the datafile
-    opcodes = readFile(path or PATH,return_type=int,strip=True,split=",")
+    opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
 
     # iterate through each opcode
     for opcode in opcodes:
@@ -39,7 +39,7 @@ Param: path: file path to datafile
 """
 def part_2(path):
     # collect list of opcodes from the datafile
-    opcodes = readFile(path or PATH,return_type=int,strip=True,split=",")
+    opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
 
     """
     Desc: Initiate the opcode with the noun and verb, and execute the adjusted opcode returning the value in address 0
@@ -88,3 +88,4 @@ def part_2(path):
 
 if __name__ == '__main__':
     arguments(part_1,part_2)
+    print("\n")
