@@ -1,7 +1,8 @@
 from reused import arguments, read_file
+from itertools import permutations
 
-PATH="5thDay/input.txt"
-opcode = None
+PATH="7thDay/input.txt"
+opcode=None
 
 def as_index(a):
     global opcode
@@ -22,18 +23,20 @@ def retrieve_param(operation = None,a = None,b = None):
 
 
 """
-Desc: Extended Intcode computer with opcodes 3 & 4, for input and output
+Desc:
 Param: path: file path to pasword range
 """
 def part_1(path):
     global opcode
     opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
+    highest_output = 0
+    best_phase = []
 
     """
     Desc: Execute the opcode returning the computer list
     Param: opcode: list of ints used to simulate an Intcode computer,
     """
-    def comput_opcode():
+    def comput_opcode(phase,input):
         global opcode
         if not opcode:
             print("Please provide an opcode for computation")
@@ -41,6 +44,7 @@ def part_1(path):
 
         operation = ""
         halted = False
+        inputs = 0
         i = 0
 
         while not halted:
@@ -62,63 +66,19 @@ def part_1(path):
                 opcode[as_value(i+3)] = a * b
                 i+=4
             elif operation[3:] == "03":
-                opcode[as_value(i+1)] = int(input())
+                if inputs == 0:
+                    opcode[as_value(i+1)] = int(phase)
+                    inputs+=1
+                elif inputs == 1:
+                    opcode[as_value(i+1)] = int(input)
+                    inputs+=1
+                else:
+                    print("Too Many Inputs")
+                    exit(1)
                 i+=2
             elif operation[3:] == "04":
                 a = retrieve_param(operation,i+1)
-                print("Diagnostic Test: %s " % a)
-                i+=2
-
-    for code in opcodes:
-        opcode = code
-        comput_opcode()
-
-"""
-Desc: Extended Intcode computer with opcodes 5, 6, 7, & 8, for jumping and comparrisons
-Param: path: file path to pasword range
-"""
-def part_2(path):
-    global opcode
-    opcodes = read_file(path or PATH,return_type=int,strip=True,split=",")
-
-    """
-    Desc: Execute the opcode returning the computer list
-    Param: opcode: list of ints used to simulate an Intcode computer,
-    """
-    def comput_opcode():
-        global opcode
-        if not opcode:
-            print("Please provide an opcode for computation")
-            exit(0)
-
-        operation = ""
-        halted = False
-        i = 0
-
-        while not halted:
-            if opcode[i] == 99:
-                halted = True
-
-            operation = str(opcode[i])
-            while len(operation) < 5:
-                operation = "0" + operation
-
-            # addition opcode, c = a + b
-            if operation[3:] == "01":
-                a,b = retrieve_param(operation,i+1,i+2)
-                opcode[as_value(i+3)] = a + b
-                i+=4
-            # addition opcode, c = a * b
-            elif operation[3:] == "02":
-                a,b = retrieve_param(operation,i+1,i+2)
-                opcode[as_value(i+3)] = a * b
-                i+=4
-            elif operation[3:] == "03":
-                opcode[as_value(i+1)] = int(input())
-                i+=2
-            elif operation[3:] == "04":
-                a = retrieve_param(operation,i+1)
-                print("Diagnostic Test: %s " % a)
+                return(a)
                 i+=2
             elif operation[3:] == "05":
                 a,b = retrieve_param(operation,i+1,i+2)
@@ -136,9 +96,17 @@ def part_2(path):
                 i+=4
 
     for code in opcodes:
-        opcode = code
-        comput_opcode()
+        for phase_setting in list(permutations([0,1,2,3,4])):
+            prev_input = 0
+            for phase in phase_setting:
+                opcode = code.copy()
+                prev_input = comput_opcode(phase,prev_input)
+            if prev_input > highest_output:
+                highest_output = prev_input
+    print ( highest_output )
 
+def part_2(path):
+    pass
 
 
 if __name__ == '__main__':

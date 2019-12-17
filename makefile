@@ -1,4 +1,4 @@
-all: day1 day2 day3 day4 day5 day6
+all: day1 day2 day3 day4 day5 day6 day7
 
 day1:
 	python3 -m 1stDay.fuelCost part1
@@ -23,3 +23,7 @@ day5:
 day6:
 	python3 -m 6thDay.orbits part1
 	python3 -m 6thDay.orbits part2
+
+day7:
+	python3 -m 7thDay.amplifiers part1
+	python3 -m 7thDay.amplifiers part2
