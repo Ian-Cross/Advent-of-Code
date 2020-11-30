@@ -27,3 +27,12 @@ day6:
 day7:
 	python3 -m 7thDay.amplifiers part1
 	python3 -m 7thDay.amplifiers part2
+	
+day8:
+	python3 -m 8thDay.images part1
+	python3 -m 8thDay.images part2
+
+
+day9:
+	python3 -m 9thDay.boostProgram part1
+	python3 -m 9thDay.boostProgram part2
