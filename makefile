@@ -23,3 +23,12 @@ day5:
 day6:
 	python3 -m 6thDay.orbits part1
 	python3 -m 6thDay.orbits part2
+
+day8:
+	python3 -m 8thDay.images part1
+	python3 -m 8thDay.images part2
+
+
+day9:
+	python3 -m 9thDay.boostProgram part1
+	python3 -m 9thDay.boostProgram part2
