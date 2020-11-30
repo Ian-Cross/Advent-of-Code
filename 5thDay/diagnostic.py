@@ -7,9 +7,11 @@ def as_index(a):
     global opcode
     return opcode[opcode[a]];
 
+
 def as_value(a):
     global opcode
     return opcode[a];
+
 
 def retrieve_param(operation = None,a = None,b = None):
     if a is not None and b is not None:
@@ -17,6 +19,7 @@ def retrieve_param(operation = None,a = None,b = None):
                 as_index(b) if operation[1] == "0" else as_value(b))
     elif b is None:
         return as_index(a) if operation[2] == "0" else as_value(a)
+
 
 """
 Desc: Extended Intcode computer with opcodes 3 & 4, for input and output
