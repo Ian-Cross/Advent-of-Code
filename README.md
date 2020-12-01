@@ -1,12 +1,16 @@
 # Advent of Code
 
-Created by [Eric Wastl](http://was.tl/) Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels. Being released every day in the Month of December 2019 this is purely for fun over the holiday break.
+Created by [Eric Wastl](http://was.tl/) Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels. Being released every day in the Month of December 2020 this is purely for fun over the holidays.
 
-Follow along and play for yourself at [Advent of Code](https://adventofcode.com/2019)
+Follow along and play for yourself at [Advent of Code](https://adventofcode.com/2020)
 
 ## Intro
 
-Santa has become stranded at the edge of the Solar System while delivering presents to other planets! To accurately calculate his position in space, safely align his warp drive, and return to Earth in time to save Christmas, he needs you to bring him measurements from fifty stars.
+After saving Christmas five years in a row, you've decided to take a vacation at a nice resort on a tropical island. Surely, Christmas will go on without you.
+
+The tropical island has its own currency and is entirely cash-only. The gold coins used there have a little picture of a starfish; the locals just call them stars. None of the currency exchanges seem to have heard of them, but somehow, you'll need to find fifty of these coins by the time you arrive so you can pay the deposit on your room.
+
+To save your vacation, you need to get all fifty stars by December 25th.
 
 Collect stars by solving puzzles. Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants one star. Good luck!
 
