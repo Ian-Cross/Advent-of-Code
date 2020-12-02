@@ -6,3 +6,7 @@ all:
 day01:
 	python3 -m 2020.day01.budgetReport part1
 	python3 -m 2020.day01.budgetReport part2
+
+day02:
+	python3 -m 2020.day02.validPasswords part1
+	python3 -m 2020.day02.validPasswords part2
