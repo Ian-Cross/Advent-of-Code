@@ -12,3 +12,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 
 - [Fixing Budget Reports](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day01/README.md)
 - [Validating Passwords](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day02/README.md)
+- [Navigating Trees](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day03/README.md)
