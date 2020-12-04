@@ -14,3 +14,7 @@ day02:
 day03:
 	python3 -m 2020.day03.treemap part1
 	python3 -m 2020.day03.treemap part2
+
+day04:
+	python3 -m 2020.day04.passports part1
+	python3 -m 2020.day04.passports part2
