@@ -18,3 +18,7 @@ day03:
 day04:
 	python3 -m 2020.day04.passports part1
 	python3 -m 2020.day04.passports part2
+
+day05:
+	python3 -m 2020.day05.boardingPasses part1
+	python3 -m 2020.day05.boardingPasses part2
