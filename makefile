@@ -22,3 +22,7 @@ day04:
 day05:
 	python3 -m 2020.day05.boardingPasses part1
 	python3 -m 2020.day05.boardingPasses part2
+
+day06:
+	python3 -m 2020.day06.customsForm part1
+	python3 -m 2020.day06.customsForm part2
