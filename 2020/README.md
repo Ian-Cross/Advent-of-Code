@@ -16,3 +16,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Validating Passports](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day04/README.md)
 - [Finding Boarding Pass](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day05/README.md)
 - [Customs Declaration Forms](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day06/README.md)
+- [Counting Luggage](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day07/README.md)

@@ -26,3 +26,7 @@ day05:
 day06:
 	python3 -m 2020.day06.customsForm part1
 	python3 -m 2020.day06.customsForm part2
+
+day07:
+	python3 -m 2020.day07.luggage part1
+	python3 -m 2020.day07.luggage part2
