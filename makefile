@@ -30,3 +30,7 @@ day06:
 day07:
 	python3 -m 2020.day07.luggage part1
 	python3 -m 2020.day07.luggage part2
+
+day08:
+	python3 -m 2020.day08.gameConsole part1
+	python3 -m 2020.day08.gameConsole part2
