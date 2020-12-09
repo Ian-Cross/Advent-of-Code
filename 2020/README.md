@@ -18,3 +18,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Customs Declaration Forms](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day06/README.md)
 - [Counting Luggage](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day07/README.md)
 - [Fixing a Gameboy](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day08/README.md)
+- [Interfacing with Inflight Entertainment](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/day09/README.md)

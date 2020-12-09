@@ -34,3 +34,7 @@ day07:
 day08:
 	python3 -m 2020.day08.gameConsole part1
 	python3 -m 2020.day08.gameConsole part2
+
+day09:
+	python3 -m 2020.day09.inflightEntertainment part1
+	python3 -m 2020.day09.inflightEntertainment part2
