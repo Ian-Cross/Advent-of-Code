@@ -38,3 +38,7 @@ day08:
 day09:
 	python3 -m 2020.day09.inflightEntertainment part1
 	python3 -m 2020.day09.inflightEntertainment part2
+
+day11:
+	python3 -m 2020.day11.seatOccupancy part1
+	python3 -m 2020.day11.seatOccupancy part2
