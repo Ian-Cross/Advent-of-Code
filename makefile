@@ -42,3 +42,7 @@ day09:
 day11:
 	python3 -m 2020.day11.seatOccupancy part1
 	python3 -m 2020.day11.seatOccupancy part2
+
+day12:
+	# python3 -m 2020.day12.ferryBoat part1
+	python3 -m 2020.day12.ferryBoat part2
