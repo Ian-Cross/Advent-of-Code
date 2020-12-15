@@ -46,3 +46,7 @@ day11:
 day12:
 	# python3 -m 2020.day12.ferryBoat part1
 	python3 -m 2020.day12.ferryBoat part2
+
+day15:
+	python3 -m 2020.day15.numbersGame part1
+	python3 -m 2020.day15.numbersGame part2
