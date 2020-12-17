@@ -50,3 +50,7 @@ day12:
 day15:
 	python3 -m 2020.day15.numbersGame part1
 	python3 -m 2020.day15.numbersGame part2
+
+day16:
+	python3 -m 2020.day16.trainTickets part1
+	python3 -m 2020.day16.trainTickets part2
