@@ -54,3 +54,7 @@ day15:
 day16:
 	python3 -m 2020.day16.trainTickets part1
 	python3 -m 2020.day16.trainTickets part2
+
+day18:
+	python3 -m 2020.day18.mathHomework part1
+	python3 -m 2020.day18.mathHomework part2
