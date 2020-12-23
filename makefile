@@ -58,3 +58,7 @@ day16:
 day18:
 	python3 -m 2020.day18.mathHomework part1
 	python3 -m 2020.day18.mathHomework part2
+
+day19:
+	python3 -m 2020.day19.sataliteComms part1
+	python3 -m 2020.day19.sataliteComms part2
