@@ -62,3 +62,7 @@ day18:
 day19:
 	python3 -m 2020.day19.sataliteComms part1
 	python3 -m 2020.day19.sataliteComms part2
+
+day21:
+	python3 -m 2020.day21.shoppingList part1
+	# python3 -m 2020.day21.shoppingList part2
