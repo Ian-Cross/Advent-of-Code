@@ -28,6 +28,7 @@ def make_day_files(year,day):
     make_startup_file(file_path + "/day" + day,day)
 
 def fetch_story(year, day):
+  session = os.environ['session']
   response = requests.get(
     f'https://adventofcode.com/{year}/day/{str(int(day))}',
     headers={
@@ -44,7 +45,7 @@ def fetch_story(year, day):
       'sec-fetch-dest': 'document',
       'referer': 'https://adventofcode.com/',
       'accept-language': 'en-US,en;q=0.9',
-      'cookie': '_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session=53616c7465645f5f18d883ad4cbfc71fcce1f1177de53901c203898384863b668abd96d4881e839c84628760589bf520; _gat=1'
+      'cookie': f'_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session={session}; _gat=1'
     }
   )
   return(response.text)
@@ -77,6 +78,7 @@ def make_readme(year, day):
 
 
 def fetch_input(year,day):
+  session = os.environ['session']
   response = requests.get(
     f'https://adventofcode.com/{year}/day/{str(int(day))}/input',
     headers={
@@ -93,7 +95,7 @@ def fetch_input(year,day):
       'sec-fetch-dest': 'document',
       'referer': 'https://adventofcode.com/',
       'accept-language': 'en-US,en;q=0.9',
-      'cookie': '_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session=53616c7465645f5f18d883ad4cbfc71fcce1f1177de53901c203898384863b668abd96d4881e839c84628760589bf520; _gat=1'
+      'cookie': f'_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session={session}; _gat=1'
     }
   )
   return(response.text)
@@ -103,7 +105,16 @@ def make_input(year,day):
   with open(f"{year}/day{day}/input.txt","w") as output:
     output.write(input_text)
 
+
+def load_env(path):
+  with open(path,"r") as env_file:
+    data = env_file.readlines()
+    for line in data:
+      envs = line.split("=")
+      os.environ[envs[0]] = envs[1]
+
 def main(year, day):
+  load_env("./reused/.env")
   make_day_files(year, day)
   make_readme(year, day)
   make_input(year,day)
