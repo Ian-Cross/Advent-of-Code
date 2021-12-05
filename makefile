@@ -14,5 +14,5 @@ day01:
 	python3 -m 2021.day01.depths part2
 
 day02:
-	python3 -m 2021.day02.day02 part1
-	python3 -m 2021.day02.day02 part2
+	python3 -m 2021.day02.main part1
+	python3 -m 2021.day02.main part2
