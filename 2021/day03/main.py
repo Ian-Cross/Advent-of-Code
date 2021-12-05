@@ -49,9 +49,9 @@ def mcb(list,idx):
 
 def part2(path):
   inputs = read_file(path or PATH, return_type=str, strip=True)
-  
   oxygen = inputs
   co2 = inputs
+  
   for i in range(len(inputs[0])):
     if (len(oxygen) > 1):
       oxygen_mcb = mcb(oxygen,i)
