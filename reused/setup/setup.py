@@ -5,53 +5,27 @@ import requests
 from markdownify import markdownify
 from bs4 import BeautifulSoup
 
-def make_startup_file(path,day):
-  os.mkdir(path)
-  data = None
-  template_path = os.getcwd() + "/reused/setup/template.txt"
-  with open(template_path,"r") as file:
-    data = file.read()
+YEAR=0
+DAY=0
 
-  input_file_path = "/".join(path.split("/")[-2:])
-  data = re.sub("INSERT_FILE_PATH",f'"{input_file_path}/test.txt"',data)
-
-  with open(path + "/day" + day + ".py","w") as file:
-    file.write(data)
-
-
-def make_day_files(year,day):
-  if year not in os.listdir():
-    os.mkdir(year)
-
-  file_path = os.getcwd() + "/" + year
-  if "day"+day not in os.listdir(file_path):
-    make_startup_file(file_path + "/day" + day,day)
+def fetch_input(year,day):
+  session = os.environ['session']
+  response = requests.get(
+    f'https://adventofcode.com/{year}/day/{int(day)}/input',
+    headers={"cookie": f"session={session};"}
+  )
+  return(response.text)
 
 def fetch_story(year, day):
   session = os.environ['session']
   response = requests.get(
-    f'https://adventofcode.com/{year}/day/{str(int(day))}',
-    headers={
-      'authority':'adventofcode.com',
-      'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"macOS"',
-      'upgrade-insecure-requests': '1',
-      'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36',
-      'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      'sec-fetch-site': 'same-origin',
-      'sec-fetch-mode': 'navigate',
-      'sec-fetch-user': '?1',
-      'sec-fetch-dest': 'document',
-      'referer': 'https://adventofcode.com/',
-      'accept-language': 'en-US,en;q=0.9',
-      'cookie': f'_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session={session}; _gat=1'
-    }
+    f"https://adventofcode.com/{year}/day/{int(day)}",
+    headers={"cookie": f"session={session};"}
   )
   return(response.text)
 
 def extract_story(content):
-  soup_aisle = BeautifulSoup(content)
+  soup_aisle = BeautifulSoup(content, features="lxml")
   soup_cans = soup_aisle.find_all("article")
 
   html_soup = []
@@ -69,56 +43,97 @@ def extract_story(content):
   opened_soup = "".join(html_soup)
   return markdownify(opened_soup)
 
+def extract_test_case(content):
+  soup_aisle = BeautifulSoup(content,features="lxml")
+  soup_cans = soup_aisle.find_all("pre")[0]("code")
+  opened_soup = ""
+  for can in soup_cans:
+    opened_soup = can.text
+  return opened_soup
+
+def extract_test_answer(content, part):
+  soup_aisle = BeautifulSoup(content,features="lxml")
+  code_blocks = soup_aisle.find_all('article')[part-1].find_all("code")
+
+  for code_idx in range(len(code_blocks)-1,-1,-1):
+    pre_blocks = code_blocks[code_idx].find_all('em')
+    if (len(pre_blocks) > 0):
+      return pre_blocks[0].text
+
+def make_startup_file(path):
+  os.mkdir(path)
+  data = None
+  template_path = os.getcwd() + "/reused/setup/template.txt"
+  with open(template_path,"r") as file:
+    data = file.read()
+
+  input_file_path = "/".join(path.split("/")[-2:])
+  data = re.sub("INSERT_FILE_PATH",f'"{input_file_path}/test.txt"',data)
+
+  with open(path + "/main.py","w") as file:
+    file.write(data)
+
+def make_day_files(year, day):
+  if year not in os.listdir():
+    os.mkdir(year)
+  else:
+    print("Already have year directory")
+
+  file_path = os.getcwd() + "/" + year
+  if "day"+day not in os.listdir(file_path):
+    make_startup_file(file_path + "/day" + day)
+  else:
+    print("Already have day directory")
+
 def make_readme(year, day):
   content = fetch_story(year, day)
   markdown = extract_story(content)
-
   with open(f"{year}/day{day}/README.md","w") as output:
     output.write(markdown)
 
+def make_input(year, day):
+  file_path = f'{os.getcwd()}/{year}/day{day}'
+  if "input.txt" not in os.listdir(file_path):
+    input_text = fetch_input(year,day)
+    with open(f"{year}/day{day}/input.txt","w") as output:
+      output.write(input_text)
+  else:
+    print("Already have input file")
 
-def fetch_input(year,day):
-  session = os.environ['session']
-  response = requests.get(
-    f'https://adventofcode.com/{year}/day/{str(int(day))}/input',
-    headers={
-      'authority':'adventofcode.com',
-      'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"macOS"',
-      'upgrade-insecure-requests': '1',
-      'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36',
-      'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      'sec-fetch-site': 'same-origin',
-      'sec-fetch-mode': 'navigate',
-      'sec-fetch-user': '?1',
-      'sec-fetch-dest': 'document',
-      'referer': 'https://adventofcode.com/',
-      'accept-language': 'en-US,en;q=0.9',
-      'cookie': f'_ga=GA1.2.1857611616.1638368842; _gid=GA1.2.1105675078.1638368842; session={session}; _gat=1'
-    }
-  )
-  return(response.text)
+def make_test(year, day):
+  file_path = f'{os.getcwd()}/{year}/day{day}'
+  if "test.txt" not in os.listdir(file_path):
+    content = fetch_story(year, day)
+    test_case = extract_test_case(content)
+    with open(f"{year}/day{day}/test.txt","w") as output:
+      output.write(test_case)
+  else:
+    print("Already have testing file")
 
-def make_input(year,day):
-  input_text = fetch_input(year,day)
-  with open(f"{year}/day{day}/input.txt","w") as output:
-    output.write(input_text)
+def get_test_answer(year,day,part):
+  try:
+    os.environ['session']
+  except KeyError:
+    load_env("./reused/.env")
 
+  content = fetch_story(year, day)
+  return extract_test_answer(content, part)
 
 def load_env(path):
   with open(path,"r") as env_file:
     data = env_file.readlines()
     for line in data:
       envs = line.split("=")
-      os.environ[envs[0]] = envs[1]
+      os.environ[envs[0]] = envs[1].strip()
 
-def main(year, day):
+def setup(year,day):
   load_env("./reused/.env")
-  make_day_files(year, day)
-  make_readme(year, day)
-  make_input(year,day)
+  make_day_files(year or YEAR, day or DAY)
+  make_input(year or YEAR, day or DAY)
+  make_test(year or YEAR, day or DAY)
+  make_readme(year or YEAR, day or DAY)
   
-
 if __name__ == "__main__":
-  main(sys.argv[1],sys.argv[2])
+  YEAR = sys.argv[1]
+  DAY = sys.argv[2]
+  setup()
