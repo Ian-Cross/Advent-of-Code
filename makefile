@@ -23,3 +23,6 @@ day2:
 day3:
 	python3 -m 2021.day03.main part1
 	python3 -m 2021.day03.main part2
+
+day4:
+	python3 -m 2021.day04.main part1
