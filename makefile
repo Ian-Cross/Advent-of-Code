@@ -9,10 +9,14 @@ all:
 setup:
 	python3 -m reused.setup.setup ${year} ${day}
 
-day01:
+day1:
 	python3 -m 2021.day01.depths part1
 	python3 -m 2021.day01.depths part2
 
-day02:
+day2:
 	python3 -m 2021.day02.main part1
 	python3 -m 2021.day02.main part2
+
+day3:
+	python3 -m 2021.day03.main part1
+	python3 -m 2021.day03.main part2
