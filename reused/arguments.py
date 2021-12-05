@@ -21,17 +21,17 @@ def arguments(part_1=None, part_2=None):
     if len(sys.argv) == 3:
         path = sys.argv[2]
         if sys.argv[1] == "part1":
-            part_1(path=path)
+            return(part_1(path=path))
         elif sys.argv[1] == "part2":
-            part_2(path=path)
+            return(part_2(path=path))
         else:
             usage()
     # run the desired part of that day
     elif len(sys.argv) == 2:
         if sys.argv[1] == "part1":
-            part_1(path=path)
+            return(part_1(path=path))
         elif sys.argv[1] == "part2":
-            part_2(path=path)
+            return(part_2(path=path))
         else:
             usage()
     else:
