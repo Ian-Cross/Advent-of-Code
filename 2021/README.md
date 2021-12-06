@@ -9,6 +9,7 @@ Your instincts tell you that in order to save Christmas, you'll need to get all 
 ## Days
 
 - [Sonar Sweep](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day01/README.md)
-- [Dive!](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day01/README.md)
-- [Binary Diagnostic](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day01/README.md)
-- [Giant Squid](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day01/README.md)
+- [Dive!](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day02/README.md)
+- [Binary Diagnostic](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day03/README.md)
+- [Giant Squid](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day04/README.md)
+- [Hydrothermal Venture](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day05/README.md)
