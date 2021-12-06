@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 year = 0
 day = 0
 def submit(part, answer):
-  print(f"{answer} to part {part}")
+  print(f"Submiting {answer} to part {part}")
   session = os.environ["session"]
   response = requests.post(
     f'https://adventofcode.com/{year}/day/{int(day)}/answer',
@@ -27,53 +27,65 @@ def submit(part, answer):
 
 def part_1():
   key = '.'
-  pyday = import_module(f"{year}.day{day}.main")
   while (key.lower() != 'q'):
     key = input("Enter command: ")
 
+  try:
     if key == "s":
       setup(year,day)
-    elif key == "t":
+    elif key[0] == "t":
       test_answer = get_test_answer(year,day, 1)
-
+      pyday = import_module(f"{year}.day{day}.main")
       pyday = reload(pyday)
-
       calculated_answer = pyday.part1(f"{year}/day{day}/test.txt")
 
       if (str(calculated_answer) == str(test_answer)):
-        print("Test passed, submitting...", end=" ")
-        if (submit(1,pyday.part1(f"{year}/day{day}/input.txt"))):
-          print("Submission Successful, moving to part 2")
+        print("Test passed")
+
+        if len(key) > 1:
+          print(pyday.part1(f"{year}/day{day}/input.txt"))
           key = 'q'
         else:
-          print("Submission failed, take a closer look.")
+          if (submit(1,pyday.part1(f"{year}/day{day}/input.txt"))):
+            print("Submission Successful, moving to part 2")
+            key = 'q'
+          else:
+            print("Submission failed, take a closer look.")
       else:
         print(f"Test failed, expected {test_answer}, got {calculated_answer}")
+  except:
+    print("Errored out")
 
 
 def part_2():
   key = '.'
-  pyday = import_module(f"{year}.day{day}.main")
   while (key.lower() != 'q'):
     key = input("Enter command: ")
 
-    if key == "s":
-      make_readme(year,day)
-    elif key == "t":
-      test_answer = get_test_answer(year,day,2)
-      pyday = reload(pyday)
+    try:
+      if key == "s":
+        make_readme(year,day)
+      elif key == "t":
+        test_answer = get_test_answer(year,day,2)
+        pyday = import_module(f"{year}.day{day}.main")
+        pyday = reload(pyday)
+        calculated_answer = pyday.part2(f"{year}/day{day}/test.txt")
 
-      calculated_answer = pyday.part2(f"{year}/day{day}/test.txt")
-
-      if (str(calculated_answer) == str(test_answer)):
-        print("Test passed, submitting...")
-        if (submit(2,pyday.part2(f"{year}/day{day}/input.txt"))):
-          print("Submission Successful! Nice Work")
-          key = 'q'
+        if (str(calculated_answer) == str(test_answer)):
+          print("Test passed")
+          if (len(key) > 1):
+            print(pyday.part2(f"{year}/day{day}/input.txt"))
+            key = 'q'
+          else:
+            if (submit(2,pyday.part2(f"{year}/day{day}/input.txt"))):
+              print("Submission Successful! Nice Work")
+              key = 'q'
+            else:
+              print("Submission failed, take a closer look.")
         else:
-          print("Submission failed, take a closer look.")
-      else:
-        print(f"Test failed, expected {test_answer}, got {calculated_answer}")
+          print(f"Test failed, expected {test_answer}, got {calculated_answer}")
+    except:
+      print("Errored out")
 
 def main(y,d):
   global year,day
