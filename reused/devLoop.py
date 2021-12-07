@@ -30,31 +30,31 @@ def part_1():
   while (key.lower() != 'q'):
     key = input("Enter command: ")
 
-  try:
-    if key == "s":
-      setup(year,day)
-    elif key[0] == "t":
-      test_answer = get_test_answer(year,day, 1)
-      pyday = import_module(f"{year}.day{day}.main")
-      pyday = reload(pyday)
-      calculated_answer = pyday.part1(f"{year}/day{day}/test.txt")
+    try:
+      if key == "s":
+        setup(year,day)
+      elif key[0] == "t":
+        test_answer = get_test_answer(year,day, 1)
+        pyday = import_module(f"{year}.day{day}.main")
+        pyday = reload(pyday)
+        calculated_answer = pyday.part1(f"{year}/day{day}/test.txt")
 
-      if (str(calculated_answer) == str(test_answer)):
-        print("Test passed")
+        if (str(calculated_answer) == str(test_answer)):
+          print("Test passed")
 
-        if len(key) > 1:
-          print(pyday.part1(f"{year}/day{day}/input.txt"))
-          key = 'q'
-        else:
-          if (submit(1,pyday.part1(f"{year}/day{day}/input.txt"))):
-            print("Submission Successful, moving to part 2")
-            key = 'q'
+          if len(key) > 1:
+            print(pyday.part1(f"{year}/day{day}/input.txt"))
           else:
-            print("Submission failed, take a closer look.")
-      else:
-        print(f"Test failed, expected {test_answer}, got {calculated_answer}")
-  except:
-    print("Errored out")
+            if (submit(1,pyday.part1(f"{year}/day{day}/input.txt"))):
+              print("Submission Successful, moving to part 2")
+              key = 'q'
+            else:
+              print("Submission failed, take a closer look.")
+        else:
+          print(f"Test failed, expected {test_answer}, got {calculated_answer}")
+    except Exception as e:
+      print("Errored out")
+      print(e)
 
 
 def part_2():
@@ -62,20 +62,21 @@ def part_2():
   while (key.lower() != 'q'):
     key = input("Enter command: ")
 
+    pyday = import_module(f"{year}.day{day}.main")
+
     try:
       if key == "s":
         make_readme(year,day)
-      elif key == "t":
+      elif key[0] == "t":
         test_answer = get_test_answer(year,day,2)
-        pyday = import_module(f"{year}.day{day}.main")
         pyday = reload(pyday)
         calculated_answer = pyday.part2(f"{year}/day{day}/test.txt")
 
         if (str(calculated_answer) == str(test_answer)):
           print("Test passed")
+
           if (len(key) > 1):
             print(pyday.part2(f"{year}/day{day}/input.txt"))
-            key = 'q'
           else:
             if (submit(2,pyday.part2(f"{year}/day{day}/input.txt"))):
               print("Submission Successful! Nice Work")
@@ -84,8 +85,9 @@ def part_2():
               print("Submission failed, take a closer look.")
         else:
           print(f"Test failed, expected {test_answer}, got {calculated_answer}")
-    except:
+    except Exception as e:
       print("Errored out")
+      print(e)
 
 def main(y,d):
   global year,day
