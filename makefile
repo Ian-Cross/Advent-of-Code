@@ -47,3 +47,7 @@ day8:
 day9:
 	python3 -m 2021.day09.main part1
 	python3 -m 2021.day09.main part2
+
+day10:
+	python3 -m 2021.day10.main part1
+	python3 -m 2021.day10.main part2
