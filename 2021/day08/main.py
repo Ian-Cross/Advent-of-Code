@@ -1,152 +1,137 @@
-from os import PRIO_USER
 from reused import arguments, read_file
 
-PATH = "2021/day08/input.txt"
+PATH = "2021/day08/test.txt"
 
-digit_counts = [6,2,5,5,4,5,6,3,7,5]
-special_digits = [2,3,4,7]
+digit_counts = [6, 2, 5, 5, 4, 5, 6, 3, 7, 5]
+special_digits = [2, 3, 4, 7]
+
 
 def part1(path):
-  file_data = read_file(path or PATH, return_type=str, strip=True)
-  
+    file_data = read_file(path or PATH, return_type=str, strip=True)
 
-  count = 0
-  for data in file_data:
-    (encoded, display) = data.split('|')
+    count = 0
+    for data in file_data:
+        (_, display) = data.split('|')
 
-    digits = [digit.replace('*','') for digit in display.strip().split(' ')]
-    for digit in digits:
-      if len(digit) in special_digits:
-        count += 1
+        digits = [digit for digit in display.strip().split(' ')]
+        for digit in digits:
+            if len(digit) in special_digits:
+                count += 1
 
-  print(count)
+    return count
+
+
+def trim_identified(array):
+    return list(filter(lambda _: _ is not None, array))
+
 
 def part2(path):
-  file_data = read_file(path or PATH, return_type=str, strip=True)
+    file_data = read_file(path or PATH, return_type=str, strip=True)
 
-  count = 0
-  total = 0
-  for data in file_data:
-    (encoded, display) = data.split('|')
+    total = 0
+    # Iterate through the segment file
+    for data in file_data:
+        (encoded, display) = data.split('|')
+        encoded = encoded.strip().split(" ")
 
-    encoded = encoded.strip().split(" ")
-    # for digit in digits:
-    decoded = {}
-    for i in range(len(encoded)):
-      side = [c for c in encoded[i]]
-      if (len(side) == 2):
-        decoded['1'] = side
-        encoded[i] = None
-      if (len(side) == 3):
-        decoded['7'] = side
-        encoded[i] = None
-      if (len(side) == 4):
-        decoded['4'] = side
-        encoded[i] = None
-      if (len(side) == 7):
-        decoded['8'] = side
-        encoded[i] = None
-    encoded = list(filter(lambda _: _ is not None, encoded))
-    
-    # Identified numbers : 1,4,7,8
+        decoded = {}
+        mappings = {}
 
-    mappings = {}
-    # Find Mapping: a
-    mappings['a'] = list(filter(lambda _: _ not in decoded['1'], decoded['7']))
+        # Identify the unique digits
+        for digit in encoded:
+            side = [_ for _ in digit]
 
+            if (len(side) in special_digits):
+                decoded[str(digit_counts.index(len(side)))] = side
+                digit = None
+        encoded = trim_identified(encoded)
 
-    # Identified numbers : 1,4,7,8
-    # Identified Mappings: a
+        # Identify position a from the part of digit 7 not in digit 1
+        mappings['a'] = list(
+            filter(lambda _: _ not in decoded['1'], decoded['7']))
 
-    # Find number: 5
-    _ = list(filter(lambda _: _ not in decoded['1'], decoded['4']))
-    print(_)
-    for i in range(len(encoded)):
-      side = [c for c in encoded[i]]
-      if len(side) == 5 and set(_).issubset(side):
-        decoded['5'] = side
-        encoded[i] = None
-        break
-    encoded = list(filter(lambda _: _ is not None, encoded))
+        # Identify digit 5, using the parts of digit 4 not included digit 1
+        parts_of_four = list(
+            filter(lambda _: _ not in decoded['1'], decoded['4']))
+        for i in range(len(encoded)):
+            side = [c for c in encoded[i]]
+            if len(side) == 5 and set(parts_of_four).issubset(side):
+                decoded['5'] = side
+                encoded[i] = None
+                break
+        encoded = trim_identified(encoded)
 
-    # Identified numbers : 1,4,7,8,5
-    # Identified Mappings: a
+        # Identify position f from the part of digit 1 in digit 5
+        mappings['f'] = list(filter(lambda _: _ in decoded['1'], decoded['5']))
+        # Identify position c from the part of digit 1 that isn't f
+        mappings['c'] = list(
+            filter(lambda _: _ not in mappings['f'], decoded['1']))
 
-    # Find Mapping: f & c
-    mappings['f'] = list(filter(lambda _: _ in decoded['1'], decoded['5']))
-    mappings['c'] = list(filter(lambda _: _ not in mappings['f'], decoded['1']))
+        # Identify position e from the parts of digit 8 not in digit 5 and not already identified
+        potential_e = list(
+            filter(lambda _: _ not in decoded['5'], decoded['8']))
+        mappings['e'] = list(
+            filter(lambda _: _ not in mappings['c'], potential_e))
 
-    potential_e = list(filter(lambda _: _ not in decoded['5'], decoded['8']))
-    mappings['e'] = list(filter(lambda _: _ not in mappings['c'], potential_e))
+        # Identify position e from the parts of digit 8 not in digit 5 and not already identified
+        potential_g = list(
+            filter(lambda _: _ not in decoded['4'], decoded['8']))
+        mappings['g'] = list(
+            filter(lambda _: _ not in [mappings['e'][0], mappings['a'][0]], potential_g))
 
-    potential_g = list(filter(lambda _: _ not in decoded['4'], decoded['8']))
-    mappings['g'] = list(filter(lambda _: _ not in [mappings['e'][0],mappings['a'][0]], potential_g))
+        # Identify digit 0, and position b using the already identified mappings
+        for digit in encoded:
+            side = [_ for _ in digit]
+            if len(side) == 6:
+                potential_0 = list(
+                    filter(lambda _: _ not in [mappings[map][0] for map in mappings], side))
+                if len(potential_0) == 1:
+                    mappings['b'] = potential_0
+                    decoded['0'] = side
+                    digit = None
+                    break
+        encoded = trim_identified(encoded)
 
-    for i in range(len(encoded)):
-      side = [c for c in encoded[i]]
-      if len(side) == 6:
-        potential_0 = list(filter(lambda _: _ not in [mappings[map][0] for map in mappings], side))
-        if len(potential_0) == 1:
-          mappings['b'] = potential_0
-          decoded['0'] = side
-          encoded[i] = None
-          break
-    encoded = list(filter(lambda _: _ is not None, encoded))
-    mappings['d'] = list(filter(lambda _: _ not in decoded['0'], decoded['8']))
+        # Identify position d from the parts of digit 8 not in digit 0
+        mappings['d'] = list(
+            filter(lambda _: _ not in decoded['0'], decoded['8']))
 
-    _2 = ['a','c','d','e','g']
-    __2 = [mappings[_][0] for _ in _2]
-    __2.sort()
-    _3 = ['a','c','d','f','g']
-    __3 = [mappings[_][0] for _ in _3]
-    __3.sort()
-    _6 = ['a','b','d','e','f','g']
-    __6 = [mappings[_][0] for _ in _6]
-    __6.sort()
-    _9 = ['a','b','c','d','f','g']
-    __9 = [mappings[_][0] for _ in _9]
-    __9.sort()
+        # Catch the leftovers digits with the completed mapping
+        proper_digit_mappings = {
+            '2': ['a', 'c', 'd', 'e', 'g'],
+            '3': ['a', 'c', 'd', 'f', 'g'],
+            '6': ['a', 'b', 'd', 'e', 'f', 'g'],
+            '9': ['a', 'b', 'c', 'd', 'f', 'g']
+        }
+        for digit_map in proper_digit_mappings:
+            digit = [mappings[_][0] for _ in proper_digit_mappings[digit_map]]
+            digit.sort()
 
-    # print(__2)
-    for num in encoded:
-      side = [c for c in num]
-      side.sort()
-      if side == __2:
-        decoded['2'] = side
-      if side == __3:
-        decoded['3'] = side
-      if side == __6:
-        decoded['6'] = side
-      if side == __9:
-        decoded['9'] = side
+            for i, num in enumerate(encoded):
+                if num == None:
+                    continue
 
+                side = [_ for _ in num]
+                side.sort()
+                if (side == digit):
+                    decoded[digit_map] = side
+                    encoded[i] = None
 
-    # print("Decoded Nums: ")
-    # for num in decoded:
-    #   decoded[num].sort()
-    #   print(num, decoded[num])
-    # print()
-
-
-    # print("Side Mappings:")
-    # for map in mappings:
-    #   print(map, mappings[map])
-    # print()
-
-    number = ''
-    for digits in display.split(" "):
-      num = [_ for _ in digits.strip().replace("*","")]
-      num.sort()
-      if len(num) == 0:
-        continue
-      for _ in decoded:
-        decoded[_].sort()
-        if decoded[_] == num:
-          number += _
-    total += int(number)
-  print(total)
+        # Decode the displayed digits
+        number = ''
+        for digits in display.split(" "):
+            num = [_ for _ in digits.strip()]
+            num.sort()
+            if len(num) == 0:
+                continue
+            for digit in decoded:
+                decoded[digit].sort()
+                if decoded[digit] == num:
+                    number += digit
+        total += int(number)
+    return total
 
 
 if __name__ == "__main__":
-  arguments(part1, part2)
-  print("\n")
+    print(arguments(part1, part2))
+    print("\n")
