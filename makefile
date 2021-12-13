@@ -57,7 +57,9 @@ day11:
 	python3 -m 2021.day11.main part2
 
 day12:
+	python3 -m 2021.day12.main part1
 	python3 -m 2021.day12.main part2
 
 day13:
+	python3 -m 2021.day13.main part1
 	python3 -m 2021.day13.main part2
