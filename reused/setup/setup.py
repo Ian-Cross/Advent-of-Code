@@ -86,6 +86,11 @@ def make_day_files(year, day):
     print("Already have day directory")
 
 def make_readme(year, day):
+  try:
+    os.environ['session']
+  except KeyError:
+    load_env("./reused/.env")
+
   content = fetch_story(year, day)
   markdown = extract_story(content)
   with open(f"{year}/day{day}/README.md","w") as output:

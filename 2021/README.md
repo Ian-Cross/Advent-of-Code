@@ -19,3 +19,4 @@ Your instincts tell you that in order to save Christmas, you'll need to get all 
 - [Smoke Basin ⚠️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day09/README.md)
 - [Syntax Scoring 🔤](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day10/README.md)
 - [Dumbo Octopus 📸](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day11/README.md)
+- [Passage Pathing ](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day12/README.md)
