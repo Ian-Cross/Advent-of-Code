@@ -21,3 +21,4 @@ Your instincts tell you that in order to save Christmas, you'll need to get all 
 - [Dumbo Octopus 📸](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day11/README.md)
 - [Passage Pathing 🔦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day12/README.md)
 - [Transparent Origami 📽️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day13/README.md)
+- [Extended Polymerization 🧪](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/day14/README.md)
