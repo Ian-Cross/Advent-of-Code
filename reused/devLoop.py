@@ -55,9 +55,12 @@ def testSolution(part, year, day, test_answer=None):
         return False
 
 
-def execute(part, year, day, path='test'):
+def execute(part, year, day, path):
     pyday = import_module(f"{year}.day{day}.main")
     pyday = reload(pyday)
+
+    if path == None:
+        path = 'test'
 
     print(getattr(pyday, f"part{part}")(
         f"{year}/day{day}/{path}.txt"))
@@ -81,7 +84,8 @@ def develop(part):
                 if testSolution(part, year, day, *keys[1:]):
                     break
             elif keys[0] == 'i':
-                execute(part, year, day, keys[1])
+                if execute(part, year, day, keys[1]):
+                    break
             elif keys[0] == 'd':
                 debug(keys[1], keys[2], keys[3:])
 
