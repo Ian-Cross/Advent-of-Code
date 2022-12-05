@@ -11,3 +11,5 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Calorie Counting 🏋️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day01/README.md)
 - [Rock Paper Scissors ✂️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day02/README.md)
 - [Rucksack Reorganization 🎒](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day03/README.md)
+- [Camp Cleanup 🧹](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day04/README.md)
+- [Supply Stacks 📦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day05/README.md)
