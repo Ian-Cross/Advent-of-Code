@@ -55,12 +55,12 @@ def testSolution(part, year, day, test_answer=None):
         return False
 
 
-def execute(part, year, day):
+def execute(part, year, day, path='test'):
     pyday = import_module(f"{year}.day{day}.main")
     pyday = reload(pyday)
 
     print(getattr(pyday, f"part{part}")(
-        f"{year}/day{day}/test.txt"))
+        f"{year}/day{day}/{path}.txt"))
 
 
 def debug(file=None, function=None, params=None):
@@ -73,14 +73,15 @@ def debug(file=None, function=None, params=None):
 def develop(part):
     keys = ['.']
     while (keys[0].lower() != 'q'):
-        keys = input(f"[P{part}] Enter command: ").split(" ")
+        keys = input(f"[P{part}] Enter command: ").split(" ") + [None]
         try:
             if keys[0] == "s":
                 setup(year, day)
             elif keys[0] == "t":
-                testSolution(part, year, day, *keys[1:])
+                if testSolution(part, year, day, *keys[1:]):
+                    break
             elif keys[0] == 'i':
-                execute(part, year, day)
+                execute(part, year, day, keys[1])
             elif keys[0] == 'd':
                 debug(keys[1], keys[2], keys[3:])
 
