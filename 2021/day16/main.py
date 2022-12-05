@@ -46,7 +46,11 @@ def proccess_packet(packet):
 
 def part1(path):
     hex = read_file(path or PATH, return_type=str, strip=True)
-    binary = bin(int(hex[0], 16))[2:]
+
+    packets = ""
+    for digit in hex[0]:
+        packets += bin(int(digit, 16))[2:].zfill(4)
+    binary = packets
 
     versions = proccess_packet(binary)
     return sum([int(version, 2) for version in versions])
@@ -103,7 +107,7 @@ def decode_packet():
     version = pop(3)
     type_id = pop(3)
     count = 6
-    
+
     # Literal Value of Type 4
     if type_id == '100':
         literal = ""
@@ -177,7 +181,10 @@ def part2(path):
     global binary
     hex = read_file(path or PATH, return_type=str, strip=True)
 
-    binary = bin(int(hex[0], 16))[2:].zfill(4)
+    packets = ""
+    for digit in hex[0]:
+        packets += bin(int(digit, 16))[2:].zfill(4)
+    binary = packets
     packets = decode_packet()
     return packets[0]
 
