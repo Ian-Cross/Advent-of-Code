@@ -13,3 +13,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Rucksack Reorganization 🎒](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day03/README.md)
 - [Camp Cleanup 🧹](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day04/README.md)
 - [Supply Stacks 📦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day05/README.md)
+- [Tuning Trouble 📟](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/day06/README.md)
