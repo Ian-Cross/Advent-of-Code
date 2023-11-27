@@ -88,6 +88,8 @@ def develop(part):
                     break
             elif keys[0] == 'd':
                 debug(keys[1], keys[2], keys[3:])
+            elif keys[0] == 'q':
+                print("skipping")
 
         except Exception as e:
             print("Errored out")
