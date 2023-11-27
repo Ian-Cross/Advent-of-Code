@@ -1,6 +1,5 @@
 import sys
 import os
-import inspect
 from importlib import import_module, reload
 
 from bs4 import BeautifulSoup
@@ -81,7 +80,7 @@ def develop(part):
             if keys[0] == "s":
                 setup(year, day)
             elif keys[0] == "t":
-                if testSolution(part, year, day, *keys[1:]):
+                if testSolution(part, year, day, keys[1]):
                     break
             elif keys[0] == 'i':
                 if execute(part, year, day, keys[1]):

@@ -4,6 +4,7 @@ PATH = "2022/day12/test.txt"
 START_CHAR = 'S'
 END_CHAR = 'E'
 
+starting_spots = []
 height_map = []
 process_queue = []
 visited = set()
@@ -19,10 +20,10 @@ def insert_global_child(new_child):
         process_queue.append(new_child)
         return
 
-    for idx, child in enumerate(process_queue):
-        if new_child.distance_to_end < child.distance_to_end:
-            process_queue.insert(idx, new_child)
-            return
+    # for idx, child in enumerate(process_queue):
+    #     if new_child.distance_to_end < child.distance_to_end:
+    #         process_queue.insert(idx, new_child)
+    #         return
     process_queue.append(new_child)
 
 
@@ -48,7 +49,7 @@ class Node:
 
 
 def build_map(data):
-    global height_map, start, end, visited
+    global height_map, start, end
     for y, line in enumerate(data):
         row = []
         for x, c in enumerate(line):
@@ -112,12 +113,8 @@ def walk(current):
         insert_global_child(child)
     return None
 
-
-def part1(path):
-    global process_queue, visited, start, end
-
-    file_data = read_file(path or PATH, return_type=str, strip=True)
-    build_map(file_data)
+def find_path(debug = False):
+    global process_queue, visited, start, end, height_map
 
     insert_global_child(start)
 
@@ -129,27 +126,66 @@ def part1(path):
         visited.add(curr.pos)
         end_node = walk(curr)
 
-        print(f"c: {len(process_queue)}, v: {len(visited)}")
-        print_map(visited)
-        input()
+        if (debug):
+            print(f"c: {len(process_queue)}, v: {len(visited)}")
+            print_map(visited)
+        # input()
         if end_node != None:
             break
 
     if end_node == None:
-        print("Failed")
-        return
+        # print("Failed")
+        return -1
 
-    steps = 0
-    while end_node.parent != None:
-        steps += 1
-        end_node = end_node.parent
-    print(steps)
+    return end_node.steps
+
+
+def find_start():
+    global height_map, start, end, starting_spots
+    for y, line in enumerate(height_map):
+        for x, c in enumerate(line):
+            if c == 'a' and (y,x) not in starting_spots:
+                start = Node((y,x), c)
+                starting_spots.append((y,x))
+                return True
+    return False
+
+def part1(path):
+    global process_queue, visited, start, end, height_map
+
+    height_map = []
+    process_queue = []
+    visited = set()
+    start = None
+    end = None
+
+    file_data = read_file(path or PATH, return_type=str, strip=True)
+    build_map(file_data)
+
+    return find_path(debug=False)
 
 
 def part2(path):
+    global process_queue, visited, start, end, height_map
+
+    height_map = []
+    process_queue = []
+    visited = set()
+    start = None
+    end = None
+
     file_data = read_file(path or PATH, return_type=str, strip=True)
-    print(file_data)
-    pass
+    build_map(file_data)
+
+    min_length = 999999999
+
+    while find_start():
+        length = find_path(debug=False)
+        if length > 0 and length < min_length:
+            min_length = length
+        process_queue = []
+        visited = set()
+    return min_length
 
 
 if __name__ == "__main__":
