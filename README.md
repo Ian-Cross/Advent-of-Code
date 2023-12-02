@@ -6,6 +6,7 @@ Follow along and play for yourself at [Advent of Code](https://adventofcode.com/
 
 ## History
 
+[2023](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/README.md)
 [2022](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2022/README.md)
 [2021](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2021/README.md)
 [2020](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2020/README.md)
