@@ -12,20 +12,20 @@ day = 0
 
 
 def submit(part, answer):
-    # print(f"Submiting {answer} to part {part}")
-    # session = os.environ["session"]
-    # response = requests.post(
-    #     f'https://adventofcode.com/{year}/day/{int(day)}/answer',
-    #     data={'level': part, 'answer': answer},
-    #     headers={"cookie": f"session={session};"},
-    # )
+    print(f"Submiting {answer} to part {part}")
+    session = os.environ["session"]
+    response = requests.post(
+        f'https://adventofcode.com/{year}/day/{int(day)}/answer',
+        data={'level': part, 'answer': answer},
+        headers={"cookie": f"session={session};"},
+    )
 
-    # soup_aisle = BeautifulSoup(response.text, features="lxml")
-    # soup_cans = soup_aisle.find_all('article')
-    # for can in soup_cans:
-    #     resp = can.text.split(".")[0]
-    #     if ("That's the right answer!" in resp):
-    #         return True
+    soup_aisle = BeautifulSoup(response.text, features="lxml")
+    soup_cans = soup_aisle.find_all('article')
+    for can in soup_cans:
+        resp = can.text.split(".")[0]
+        if ("That's the right answer!" in resp):
+            return True
     return False
 
 
