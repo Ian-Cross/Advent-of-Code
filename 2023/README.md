@@ -10,3 +10,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 
 - [Trebuchet?! 🎯](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day01/README.md)
 - [Cube Conundrum 🟦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day02/README.md)
+- [Gear Ratios ⚙️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day03/README.md)
