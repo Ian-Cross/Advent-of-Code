@@ -50,7 +50,7 @@ def read_file(path=None, return_type=str, strip=False, split=None, as_one=None):
 
     with open(path) as file:
         if as_one == True:
-            contents = "".join(file.readlines())
+            contents = format("".join(file.readlines()),return_type,strip,split)
         else:
             for line in file:
                 # Add the formatted line to the main list
