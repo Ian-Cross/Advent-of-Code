@@ -11,3 +11,6 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Trebuchet?! 🎯](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day01/README.md)
 - [Cube Conundrum 🟦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day02/README.md)
 - [Gear Ratios ⚙️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day03/README.md)
+- [Scratchcards 📄](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day04/README.md)
+- [If You Give A Seed A Fertilizer 🌾](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day05/README.md)
+- [Wait For It ⛵](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day06/README.md)
