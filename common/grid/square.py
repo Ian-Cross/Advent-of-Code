@@ -6,3 +6,9 @@ class Square:
 
   def display(self,delim='\n'):
     print(self.data,end=delim)
+
+  def __eq__(self,other):
+    if not isinstance(other,Square):
+      return NotImplemented
+    
+    return self.data == other.data
