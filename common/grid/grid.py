@@ -68,3 +68,5 @@ class Grid:
   def set(self,pos: tuple[int,int],value) -> None:
     self.matrix[pos[0]][pos[1]].data = value
   
+  def rotate_90(self,clockwise = True):
+    self.matrix = list(zip(*self.matrix[::-1]))
