@@ -21,3 +21,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Point of Incidence 🪞](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day13/README.md)
 - [Parabolic Reflector Dish ⛵](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day14/README.md)
 - [Lens Library 🔍](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day15/README.md)
+- [The Floor Will Be Lava ⛰️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day16/README.md)
