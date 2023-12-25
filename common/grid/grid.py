@@ -34,6 +34,23 @@ class Grid:
       for x, col in enumerate(row):
         callback(row,y,col,x)
 
+  def insert_row(self,row,idx):
+    
+    if len(row) != self.width:
+      return -1
+    
+    self.height += 1
+    self.matrix.insert(idx,row)
+  
+  def insert_column(self,col,idx):
+
+    if len(col) != self.height:
+      return -1
+
+    self.width += 1
+    for row_num, row in enumerate(self.matrix):
+      row.insert(idx,col[row_num])
+
   def in_bounds(self,pos: tuple[int,int],n: tuple[int,int] = None) -> bool:
     new_pos = pos
     if n is not None:
@@ -51,3 +68,5 @@ class Grid:
   def set(self,pos: tuple[int,int],value) -> None:
     self.matrix[pos[0]][pos[1]].data = value
   
+  def rotate_90(self,clockwise = True):
+    self.matrix = list(zip(*self.matrix[::-1]))
