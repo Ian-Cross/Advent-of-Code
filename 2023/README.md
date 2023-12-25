@@ -14,3 +14,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Scratchcards 📄](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day04/README.md)
 - [If You Give A Seed A Fertilizer 🌾](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day05/README.md)
 - [Wait For It ⛵](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day06/README.md)
+- [Pipe Maze 🐁](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day010/README.md)
