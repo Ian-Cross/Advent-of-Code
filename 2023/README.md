@@ -17,6 +17,7 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Camel Cards 🎰](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day07/README.md)
 - [Haunted Wasteland 🏝️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day08/README.md)
 - [Mirage Maintenance 🏖️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day09/README.md)
+- [Pipe Maze 🐁](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day10/README.md)
 - [Cosmic Expansion 🔭](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day11/README.md)
 - [Point of Incidence 🪞](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day13/README.md)
 - [Parabolic Reflector Dish ⛵](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2023/day14/README.md)
