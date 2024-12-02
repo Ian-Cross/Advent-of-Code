@@ -9,3 +9,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 ## Days
 
 - [Historian Hysteria 📋](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day01/README.md)
+- [Red-Nosed Reports 🔴](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day02/README.md)
