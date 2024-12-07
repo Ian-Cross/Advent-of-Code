@@ -13,13 +13,15 @@ class Grid:
       if (line_break): 
         print()
 
-  def fill(self, grid, height = None, width = None) -> None:
+  def fill(self, grid, height = None, width = None, callback = None) -> None:
     matrix = []
     max_width = 0
     for y,line in enumerate(grid):
       row = []
       for x,el in enumerate(line):
         row.append(Square(el))
+        if callback:
+          callback(row,y,row[-1],x)
 
       if len(row) > max_width:
         max_width = len(row)
@@ -70,3 +72,9 @@ class Grid:
   
   def rotate_90(self,clockwise = True):
     self.matrix = list(zip(*self.matrix[::-1]))
+
+  def size(self):
+    return (self.height,self.width)
+  
+  def count(self):
+    return self.height * self.width
