@@ -41,6 +41,7 @@ def testSolution(part, year, day, test_answer=None):
 
     if (str(calculated_answer) == str(test_answer)):
         print("Test passed")
+        pyday = reload(pyday)
 
         if (submit(part, getattr(pyday, f"part{part}")(f"{year}/day{day}/input.txt"))):
             print("Submission Successful, moving on")

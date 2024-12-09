@@ -15,3 +15,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Print Queue 📰](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day05/README.md)
 - [Guard Gallivant 💂‍♂️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day06/README.md)
 - [Bridge Repair 🧮](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day07/README.md)
+- [Resonant Collinearity 📡](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day08/README.md)
