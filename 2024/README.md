@@ -18,3 +18,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Resonant Collinearity 📡](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day08/README.md)
 - [Disk Fragmenter 💾](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day09/README.md)
 - [Hoof It 🌋](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day10/README.md)
+- [Plutonian Pebbles 🗿](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day11/README.md)
