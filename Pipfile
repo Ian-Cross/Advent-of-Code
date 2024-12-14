@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 tqdm = "*"
+bs4 = "*"
 
 [dev-packages]
 
