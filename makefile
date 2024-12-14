@@ -7,7 +7,7 @@ all:
 	@echo "https://adventofcode.com/"
 
 advent:
-	python3 -m reused.devLoop ${year} ${day}
+	pipenv run python3 -m reused.devLoop ${year} ${day}
 
 setup:
-	python3 -m reused.setup.setup ${year} ${day}
+	pipenv run python3 -m reused.setup.setup ${year} ${day}
