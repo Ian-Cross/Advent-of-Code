@@ -21,3 +21,4 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 - [Plutonian Pebbles 🗿](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day11/README.md)
 - [Claw Contraption 🎰](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day13/README.md)
 - [Restroom Redoubt 🚽](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day14/README.md)
+- [Warehouse Woes 📦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2024/day15/README.md)
