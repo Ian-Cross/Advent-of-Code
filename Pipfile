@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 tqdm = "*"
 bs4 = "*"
+markdownify = "*"
+requests = "*"
+lxml = "*"
 
 [dev-packages]
 
