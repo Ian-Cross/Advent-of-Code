@@ -66,10 +66,13 @@ class Grid:
   
   def at(self,pos: tuple[int,int]) -> Square:
     return self.matrix[pos[0]][pos[1]]
-  
+
+  def get(self,pos: tuple[int,int]):
+    return self.matrix[pos[0]][pos[1]].data
+
   def set(self,pos: tuple[int,int],value) -> None:
     self.matrix[pos[0]][pos[1]].data = value
-  
+
   def rotate_90(self,clockwise = True):
     self.matrix = list(zip(*self.matrix[::-1]))
 
@@ -78,3 +81,6 @@ class Grid:
   
   def count(self):
     return self.height * self.width
+  
+  def row(self,idx: int) -> list[Square]:
+    return self.matrix[idx]
