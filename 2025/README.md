@@ -10,4 +10,8 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 
 ## Days
 
-
+- [Found the Password 🔑](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2025/day01/README.md)
+- [Found Invalid Products 📦](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2025/day02/README.md)
+- [Arranged some batteries 🔋](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2025/day03/README.md)
+- [Organized Forklifts 🏗️](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2025/day04/README.md)
+- [Used Fresh Ingredients 🥬](https://github.com/Ian-Cross/Advent-of-Code/blob/master/2025/day05/README.md)
