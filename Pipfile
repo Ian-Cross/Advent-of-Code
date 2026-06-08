@@ -5,10 +5,10 @@ name = "pypi"
 
 [packages]
 tqdm = "*"
-bs4 = "*"
 markdownify = "*"
 requests = "*"
 lxml = "*"
+bs4 = "*"
 
 [dev-packages]
 

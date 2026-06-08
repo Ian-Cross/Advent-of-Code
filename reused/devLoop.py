@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 from importlib import import_module, reload
 
 from bs4 import BeautifulSoup
@@ -9,6 +10,21 @@ from reused.setup.setup import setup, get_test_answer, make_readme
 
 year = 0
 day = 0
+
+
+def _is_go_day(year, day):
+    return os.path.exists(f"{year}/day{day}/main.go")
+
+
+def _run_go(year, day, part, path):
+    result = subprocess.run(
+        ["go", "run", f"{year}/day{day}/main.go", f"part{part}", path],
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip())
+    return result.stdout.strip()
 
 
 def submit(part, answer):
@@ -33,17 +49,25 @@ def testSolution(part, year, day, test_answer=None):
     if test_answer == None:
         test_answer = get_test_answer(year, day, part)
 
-    pyday = import_module(f"{year}.day{day}.main")
-    pyday = reload(pyday)
+    go = _is_go_day(year, day)
 
-    calculated_answer = getattr(pyday, f"part{part}")(
-        f"{year}/day{day}/test.txt")
+    if go:
+        calculated_answer = _run_go(year, day, part, f"{year}/day{day}/test.txt")
+    else:
+        pyday = import_module(f"{year}.day{day}.main")
+        pyday = reload(pyday)
+        calculated_answer = getattr(pyday, f"part{part}")(f"{year}/day{day}/test.txt")
 
     if (str(calculated_answer) == str(test_answer)):
         print("Test passed")
-        pyday = reload(pyday)
 
-        if (submit(part, getattr(pyday, f"part{part}")(f"{year}/day{day}/input.txt"))):
+        if go:
+            actual_answer = _run_go(year, day, part, f"{year}/day{day}/input.txt")
+        else:
+            pyday = reload(pyday)
+            actual_answer = getattr(pyday, f"part{part}")(f"{year}/day{day}/input.txt")
+
+        if (submit(part, actual_answer)):
             print("Submission Successful, moving on")
             return True
         else:
@@ -56,14 +80,15 @@ def testSolution(part, year, day, test_answer=None):
 
 
 def execute(part, year, day, path):
-    pyday = import_module(f"{year}.day{day}.main")
-    pyday = reload(pyday)
-
     if path == None:
         path = 'test'
 
-    print(getattr(pyday, f"part{part}")(
-        f"{year}/day{day}/{path}.txt"))
+    if _is_go_day(year, day):
+        print(_run_go(year, day, part, f"{year}/day{day}/{path}.txt"))
+    else:
+        pyday = import_module(f"{year}.day{day}.main")
+        pyday = reload(pyday)
+        print(getattr(pyday, f"part{part}")(f"{year}/day{day}/{path}.txt"))
 
 
 def debug(file=None, function=None, params=None):
@@ -76,7 +101,8 @@ def debug(file=None, function=None, params=None):
 def develop(part):
     keys = ['.']
     while (keys[0].lower() != 'q'):
-        keys = input(f"[P{part}] Enter command: ").split(" ") + [None]
+        go = _is_go_day(year, day)
+        keys = input(f"[P{part}] ({'go' if go else 'py'}) Enter command: ").split(" ") + [None]
         try:
             if keys[0] == "s":
                 setup(year, day)

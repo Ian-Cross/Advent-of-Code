@@ -49,7 +49,10 @@ def extract_story(content):
 
 def extract_test_case(content):
     soup_aisle = BeautifulSoup(content, features="lxml")
-    soup_cans = soup_aisle.find_all("pre")[0]("code")
+    pre = soup_aisle.find_all("pre")
+    if (len(pre) == 0):
+        return "n/a"
+    soup_cans = pre[0]("code")
     opened_soup = ""
     for can in soup_cans:
         opened_soup = can.text
@@ -58,7 +61,12 @@ def extract_test_case(content):
 
 def extract_test_answer(content, part):
     soup_aisle = BeautifulSoup(content, features="lxml")
-    code_blocks = soup_aisle.find_all('article')[int(part)-1].find_all("code")
+    articles = soup_aisle.find_all("article")
+    if (len(articles) < int(part)):
+        raise Exception("Part number is too high for this day")
+    code_blocks = articles[int(part)-1].find_all("code")
+    if (len(code_blocks) == 0):
+        raise Exception("No code blocks found in article")
 
     for code_idx in range(len(code_blocks)-1, -1, -1):
         pre_blocks = code_blocks[code_idx].find_all('em')
